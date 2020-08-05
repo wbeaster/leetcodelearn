@@ -18,6 +18,31 @@ Note:
  * @param {number[]} nums
  * @return {number}
  */
-var findMaxConsecutiveOnes = function(nums) {
-    
+var findMaxConsecutiveOnes = function(nums) 
+{
+    let maxConsecutiveOnes = 0;
+    let currentConsecutiveOnes = 0;
+
+    for (let i = 0; i < nums.length; i++)
+    {
+        //console.log(i);
+        switch (nums[i])
+        {
+            case 0:
+                currentConsecutiveOnes = 0;
+                break;
+            case 1:
+                currentConsecutiveOnes++;
+                if (currentConsecutiveOnes > maxConsecutiveOnes)
+                    maxConsecutiveOnes = currentConsecutiveOnes;
+                break;
+        }
+    }
+    return maxConsecutiveOnes;    
 };
+
+let data = [[1,1,0,1,1,1], [1,1,1,1,1,1,1]];
+let answer = [3,7];
+
+for (let i = 0; i < answer.length; i++)
+    console.log(findMaxConsecutiveOnes(data[i]) == answer[i]);
