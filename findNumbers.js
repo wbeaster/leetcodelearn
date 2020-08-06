@@ -1,8 +1,6 @@
 /*
 Given an array nums of integers, return how many of them contain an even number of digits.
 
- 
-
 Example 1:
 
 Input: nums = [12,345,2,6,7896]
@@ -34,6 +32,28 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  */
-var findNumbers = function(nums) {
+var findNumbers = function(nums) 
+{
+    let count = 0;
     
+    for (let i = 0; i < nums.length; i++)
+    {
+        if (nums[i] == 100000)
+            count++;
+        else if (nums[i] >= 10000);
+        else if (nums[i] >= 1000)
+            count++;
+        else if (nums[i] >= 100);
+        else if (nums[i] >= 10)
+            count++;
+    }
+    return count;
 };
+
+let data = [555,901,482,1771];
+let answer = 1;
+
+console.log(findNumbers(data) == answer);
+
+//for (let i = 0; i < answer.length; i++)
+//    console.log(findMaxConsecutiveOnes(data[i]) == answer[i]);
