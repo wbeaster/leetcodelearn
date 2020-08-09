@@ -52,7 +52,7 @@ var duplicateZeros = function(arr)
     else
     {
         //use -1 as a marker to ensure that a 0 is doubled again (infinetly)
-        for (i = 0; i < arr.length; i++)
+        for (i = 0; i < arr.length-1; i++)
         {
             if (arr[i] == 0)
             {
@@ -72,7 +72,7 @@ var duplicateZeros = function(arr)
     }
 };
 
-let data = [1,2,3];
+let data = [1,0,2,3,0,4,5,0];
 
 console.log(data);
 
