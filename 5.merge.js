@@ -44,44 +44,69 @@ var merge = function(nums1, m, nums2, n)
         }
     }
 
-    //TODO: handle empty arrays
-    //TODO: handle arrays with one element in each
+    nums3 = new Array(m+n);
 
     let iNums1 = 0;
     let iNums2 = 0;
-    
-    do
+    let iNums3 = 0;
+
+    while (iNums1 < m && iNums2 < n)
     {
-        //TODO: What is they are equal???
-        if (nums1[iNums1] > nums2[iNums2])
+        if (nums1[iNums1] < nums2[iNums2])
         {
-            shiftRightOne(nums1, iNums1)
-            nums1[iNums1] = nums2[iNums2];
+            nums3[iNums3] = nums1[iNums1];
+            iNums3++;
+            iNums1++;
+        }
+        else if (nums1[iNums1] == nums2[iNums2])
+        {
+            nums3[iNums3] = nums1[iNums1];
+            iNums3++;
+            nums3[iNums3] = nums2[iNums2];
+            iNums3++;
             iNums1++;
             iNums2++;
         }
-        else
+        else if (nums1[iNums1] > nums2[iNums2])
         {
-            iNums1++;
+            nums3[iNums3] = nums2[iNums2];
+            iNums3++;
+            iNums2++;            
         }
     }
-    while ((iNums2 < n) && (iNums1 < m))
 
-    //potential off by one error here
-    if (iNums1 > iNums2)
-        return nums1.concat(nums2.slice(iNums2));
-    else
-        return nums1;
+    if (iNums1 == m + n) return nums3;
+
+    if (iNums1 < m)
+    {
+        for (iNums1; iNums1 < m; iNums1++)
+        {
+            nums3[iNums3] = nums1[iNums1];
+            iNums3++;
+        }
+    }
+
+    if (iNums2 < n)
+    {
+        for (iNums2; iNums2 < n; iNums2++)
+        {
+            nums3[iNums3] = nums2[iNums2];
+            iNums3++;
+        }
+    }
+
+    return nums3;
+
 };
 
 //TODO: Reread the spec and make your **thorough** test data
 //TODO: Does our number array handle +- 10^9
 
-let nums1 = [1,4,6,8,10,0];
-let m = 5;
-let nums2 = [3];
-let n = 1;
+let nums1 = [10,11, 1000000000, 0, 0, 0];
+let m = 3;
+let nums2 = [1, 2, 3, 11000000];
+let n = 4;
 
-answer = merge(nums1, m, nums2, n)
+answer = merge(nums1, m, nums2, n);
 
 console.log(answer);
