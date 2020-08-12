@@ -33,17 +33,6 @@ Constraints:
  */
 var merge = function(nums1, m, nums2, n) 
 {
-    var shiftRightOne = function(arr, startIndex)
-    {
-        //this starts at the second to last one and then shifts everything right
-        //startIndex is the index where you want to start shifting right from
-        //the item at startIndex will be moved one to the right too
-        for (let i = arr.length-1; i >= startIndex; i--)
-        {
-                arr[i] = arr[i-1];
-        }
-    }
-
     nums3 = new Array(m+n);
 
     let iNums1 = 0;
@@ -75,7 +64,7 @@ var merge = function(nums1, m, nums2, n)
         }
     }
 
-    if (iNums1 == m + n) return nums3;
+    //if (iNums1 == m + n) return nums3;
 
     if (iNums1 < m)
     {
@@ -95,7 +84,10 @@ var merge = function(nums1, m, nums2, n)
         }
     }
 
-    return nums3;
+    for (i = 0; i < iNums3; i++)
+        nums1[i] = nums3[i];
+
+    return nums1;
 
 };
 
