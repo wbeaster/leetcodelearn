@@ -44,33 +44,34 @@ var validMountainArray = function(A)
     if (A.length < 3) return false;
     if (A.length > 10000) return false;
 
-    let mountain = true;
-    let increasing = true;
-    let decreasing = true;
+    let increased = false;
+    let decreased = false;
 
     let i = 0, j = 1;
    
-    //what if we have [2,1] ??
-    while (increasing && j < A.length)
+    while (j < A.length)
     {
         if (A[i] >= A[j])
-        {
-            increasing = false
             break;
-        }
+        
         i++;
         j++;
+        increased = true;
     }
 
-    while (decreasing && j < A.length)
+    if (!increased) return false;
+
+    while (j < A.length)
     {
         if (A[i] <= A[j])
-        {
             return false;
-        }
+
+        i++;
+        j++;
+        decreased = true;
 
     }
-    
+    return (increased && decreased);
 };
 
 let data = [
@@ -111,6 +112,11 @@ let data = [
         val: true
     },
     {
+        nums: [1, 2, 3, 3, 2, 1],
+        val: false
+    },
+
+    {
         nums: [1, 2, 3, 2, 1, 2, 1, 2, 3],
         val: false
     },
@@ -130,7 +136,7 @@ let data = [
 
 for (let x in data)
 {
-    console.log(`${data[x].nums} # ${data[x].val}`);
+    console.log(`${data[x].nums} # ${data[x].val} ? ${validMountainArray(data[x].nums)}`);
 
     validMountainArray(data[x].nums) == data[x].val ? console.log('pass') : console.log('fail');
 
