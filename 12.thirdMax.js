@@ -1,62 +1,39 @@
 /*
-Given an array A of non-negative integers, return an array consisting of all the even elements of A, followed by all the odd elements of A.
-
-You may return any answer array that satisfies this condition.
-
- 
+Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).
 
 Example 1:
 
-Input: [3,1,2,4]
-Output: [2,4,3,1]
-The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+Input: [3, 2, 1]
 
- 
+Output: 1
 
-Note:
+Explanation: The third maximum is 1.
 
-    1 <= A.length <= 5000
-    0 <= A[i] <= 5000
+Example 2:
 
+Input: [1, 2]
+
+Output: 2
+
+Explanation: The third maximum does not exist, so the maximum (2) is returned instead.
+
+Example 3:
+
+Input: [2, 2, 3, 1]
+
+Output: 1
+
+Explanation: Note that the third maximum here means the third maximum distinct number.
+Both numbers with value 2 are both considered as second maximum.
 */
 
 /**
- * @param {number[]} A
- * @return {number[]}
+ * @param {number[]} nums
+ * @return {number}
  */
-var sortArrayByParity = function(nums) 
+var thirdMax = function(nums) 
 {
-    if (nums.length == 1) return;
     
-    let i = 0;
-    let j = 1;
-    let numDragged = 0;
-
-    //in short, bubble each odd element to the end of the array, shortening the length we drag to
-    //as we fill the end with odd elements
-    
-    do
-    {
-        if (nums[i] % 2 != 0)
-        {
-            //move it to the end
-            for (j = i; j < nums.length-1-numDragged; j++)
-            {
-                let t = nums[j]
-                nums[j] = nums[j+1];
-                nums[j+1] = t;
-            }
-            numDragged++;            
-        }
-        else
-        {
-            i++;
-        }
-    }
-    while (i + numDragged  < nums.length)
-    
-    return nums;
-
 };
 
 let data = [
@@ -121,7 +98,6 @@ let data = [
         nums: [0,0,0,2,1,2,2,3,0,4,2],
         val:  [2,1,2,2,3,4,2,0,0,0,0]
     }
-
 ]
 
 
