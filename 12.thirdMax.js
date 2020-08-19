@@ -1,5 +1,6 @@
 /*
-Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. The time complexity must be in O(n).
+Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. 
+The time complexity must be in O(n).
 
 Example 1:
 
@@ -33,6 +34,39 @@ Both numbers with value 2 are both considered as second maximum.
  */
 var thirdMax = function(nums) 
 {
+    max1 = nums[0];
+    max2 = nums[0];
+    max3 = nums[0];
+
+    for (let i = 0; i < nums.length; i++)
+    {
+        if (nums[i] > max3)
+        {
+            if (nums[i]> max2)
+            {
+                if (nums[i] > max1)
+                {
+                    max3 = max2;
+                    max2 = max1;
+                    max1 = nums[i]
+                }
+                else
+                {
+                    max3 = max2;
+                    max2 = nums[i];
+                }
+            }
+            else
+                max3 = nums[i];
+        }
+    }
+
+    if (max1 > max2 && max2 > max3) return max3;
+    
+    return (max2 > max1) ? (max2) : (max1);
+
+
+
     
 };
 
@@ -105,10 +139,9 @@ for (let x in data)
 {
     console.log(`${data[x].nums}`);
 
-    sortArrayByParity(data[x].nums);
+    //sortArrayByParity(data[x].nums);
 
-    //ZERO IS EVEN!!!
-    console.log(data[x].nums);
+    console.log(thirdMax(data[x].nums));
 
     //answer == data[x].val ? console.log(`pass (${answer})`) : console.log(`fail ${answer}`);
 }
