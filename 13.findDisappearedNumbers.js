@@ -33,13 +33,17 @@ var findDisappearedNumbers = function(nums)
     
     nums = [];
 
-    for (let i = 0; i < map.length; i++)
-        if (map[i] != -1) nums.push(map[i]);
+    for (let i = 1; i < map.length; i++)
+        if (map[i] != -1) nums.push(i);
 
     return nums;
 };
 
 let data = [
+    {
+        nums: [4,3,2,7,8,2,3,1],
+        val: [5,6]
+    },
     {
         nums: [0,3,1,2,4,0],
         val: [1,3,12,0,0]
@@ -120,6 +124,10 @@ let data = [
     {
         nums: [-2, -2, -3, -1, -4, -5, 0],
         val:  1
+    },
+    {
+        nums: [1, 1],
+        val:  [2]
     }
 ]
 
