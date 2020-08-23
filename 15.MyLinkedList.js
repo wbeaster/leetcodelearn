@@ -13,10 +13,10 @@ Implement these functions in your linked list class:
 
 Example:
 
-Input: 
+Input:
 ["MyLinkedList","addAtHead","addAtTail","addAtIndex","get","deleteAtIndex","get"]
 [[],[1],[3],[1,2],[1],[1],[1]]
-Output:  
+Output:
 [null,null,null,null,2,null,3]
 
 Explanation:
@@ -36,67 +36,56 @@ Constraints:
     Please do not use the built-in LinkedList library.
     At most 2000 calls will be made to get, addAtHead, addAtTail,  addAtIndex and deleteAtIndex.
 */
-
 /**
  * Initialize your data structure here.
  */
+class MyLinkedList {
+    constructor() {
+        let val;
+        let nextNode = new MyLinkedList(val);
+    }
+    /**
+     * Get the value of the index-th node in the linked list. If the index is invalid, return -1.
+     * @param {number} index
+     * @return {number}
+     */
+    get(index) {
+    }
+    /**
+     * Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
+     * @param {number} val
+     * @return {void}
+     */
+    addAtHead(val) {
+    }
+    /**
+     * Append a node of value val to the last element of the linked list.
+     * @param {number} val
+     * @return {void}
+     */
+    addAtTail(val) {
+    }
+    /**
+     * Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
+     * @param {number} index
+     * @param {number} val
+     * @return {void}
+     */
+    addAtIndex(index, val) {
+    }
+    /**
+     * Delete the index-th node in the linked list, if the index is valid.
+     * @param {number} index
+     * @return {void}
+     */
+    deleteAtIndex(index) {
+    }
+}
 
-var MyLinkedList = function() 
-{
-    let val;
-    let nextNode = new MyLinkedList(val);    
-};
 
-/**
- * Get the value of the index-th node in the linked list. If the index is invalid, return -1. 
- * @param {number} index
- * @return {number}
- */
-MyLinkedList.prototype.get = function(index) 
-{
-    
-};
 
-/**
- * Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. 
- * @param {number} val
- * @return {void}
- */
-MyLinkedList.prototype.addAtHead = function(val) 
-{
-    
-};
 
-/**
- * Append a node of value val to the last element of the linked list. 
- * @param {number} val
- * @return {void}
- */
-MyLinkedList.prototype.addAtTail = function(val) 
-{
-    
-};
 
-/**
- * Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. 
- * @param {number} index 
- * @param {number} val
- * @return {void}
- */
-MyLinkedList.prototype.addAtIndex = function(index, val) 
-{
-    
-};
-
-/**
- * Delete the index-th node in the linked list, if the index is valid. 
- * @param {number} index
- * @return {void}
- */
-MyLinkedList.prototype.deleteAtIndex = function(index) 
-{
-    
-};
 
 /** 
  * Your MyLinkedList object will be instantiated and called as such:
