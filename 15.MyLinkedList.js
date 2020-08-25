@@ -131,7 +131,7 @@ class Node
         let newNode = new Node(val);
         let a = this.head;
 
-        for (let i = 0; i < index; i++)
+        for (let i = 0; i < index-1; i++)
         {
             a = a.next;
         }
