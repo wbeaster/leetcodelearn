@@ -131,7 +131,7 @@ class Node
         let newNode = new Node(val);
         let a = this.head;
 
-        for (let i = 0; i < this.index; i++)
+        for (let i = 0; i < index; i++)
         {
             a = a.next;
         }
@@ -171,6 +171,25 @@ class Node
         a.next = c;
         this.length--;
     }
+
+    vals()
+    {
+        if (this.length == 0) return;
+
+        let a = this.head;
+        
+        let string;
+
+        while (a.next != null)
+        {
+            string = string + ", " + a.val;
+            a = a.next;
+        }
+
+        string = string + ", " + a.val;
+
+        return string;
+    }
 }
 
 /** 
@@ -183,7 +202,6 @@ class Node
  * obj.deleteAtIndex(index)
  */
 
-var obj = new MyLinkedList()
 
 /*
 obj.addAtHead(1)
@@ -249,8 +267,38 @@ let vars = [[],[38],[66],[61],[76],[26],[37],[8],[5],[4],[45],[4],[85],[37],[5],
 
 /*
 [null,null,null,null,null,null,null,null,null,null,null,61,null,null,61,null,null,null,null,null,null,8,null,null,52,null,null,null,null,null,null,null,null,8,null,null,null,null,null,null,null,null,null,null,-1,95,null,null,null,null,null,95,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,81,null,null,null,null,null,null,null,null,null,6,37,null,55,null,null,null,null,null,null,null,26,null,null,null,null,48,null,26,null,null,23,null,null]
-
-[null,null,null,null,null,null,null,null,null,null,null,61,null,null,61,null,null,null,null,null,null,85,null,null,37,null,null,null,null,null,null,null,null,23,null,null,null,null,null,null,null,null,null,null,-1,95,null,null,null,null,null,31,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,8,null,null,null,null,null,null,null,null,null,6,47,null,23,null,null,null,null,null,null,null,93,null,null,null,null,48,null,93,null,null,59,null,null]
 */
 
+let expected = [null,null,null,null,null,null,null,null,null,null,null,61,null,null,61,null,null,null,null,null,null,85,null,null,37,null,null,null,null,null,null,null,null,23,null,null,null,null,null,null,null,null,null,null,-1,95,null,null,null,null,null,31,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,8,null,null,null,null,null,null,null,null,null,6,47,null,23,null,null,null,null,null,null,null,93,null,null,null,null,48,null,93,null,null,59,null,null]
 
+
+var obj = new MyLinkedList();
+let output;
+
+for (let i = 0; i < funcs.length; i++)
+{
+    switch (funcs[i])
+    {
+        case "MyLinkedList":
+            break;
+        case "addAtHead":
+            output = obj.addAtHead(vars[i]);
+            break;
+        case "addAtTail":
+            output = obj.addAtTail(vars[i]);
+            break;
+        case "deleteAtIndex":
+            output = obj.deleteAtIndex(vars[i]);
+            break;
+        case "get":
+            output = obj.get(vars[i]);
+            break;
+        case "addAtIndex":
+            output = obj.addAtIndex(vars[i][0], vars[i][1]);
+            break;
+    }
+
+    console.log(`i: ${i}       expected: ${expected[i]} :: ${output} :output`);
+    //console.log(obj.vals());
+
+}
