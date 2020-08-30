@@ -1,93 +1,59 @@
 /*
-Write a program to find the node at which the intersection of two singly linked lists begins.
+Remove all elements from a linked list of integers that have value val.
 
-For example, the following two linked lists:
+Example:
 
-begin to intersect at node c1.
-
- 
-
-Example 1:
-
-Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
-Output: Reference of the node with value = 8
-Input Explanation: The intersected node's value is 8 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,6,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
-
- 
-
-Example 2:
-
-Input: intersectVal = 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
-Output: Reference of the node with value = 2
-Input Explanation: The intersected node's value is 2 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
-
- 
-
-Example 3:
-
-Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
-Output: null
-Input Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
-Explanation: The two lists do not intersect, so return null.
-
- 
-
-Notes:
-
-    If the two linked lists have no intersection at all, return null.
-    The linked lists must retain their original structure after the function returns.
-    You may assume there are no cycles anywhere in the entire linked structure.
-    Each value on each linked list is in the range [1, 10^9].
-    Your code should preferably run in O(n) time and use only O(1) memory.
-
+Input:  1->2->6->3->4->5->6, val = 6
+Output: 1->2->3->4->5
 
 */
 
 /**
  * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
  * }
  */
-
 /**
- * @param {ListNode} headA
- * @param {ListNode} headB
+ * @param {ListNode} head
+ * @param {number} val
  * @return {ListNode}
  */
-var getIntersectionNode = function(headA, headB) 
+var removeElements = function(head, val) 
 {
-    console.log('enter');
-    if (headA == null) return null;
-    if (headB == null) return null;
-    
-    if (headA.next == null) return null;
-    if (headB.next == null) return null;
-
-    if (headA == headB) return headA;
-    
-    if (headA.next.val == headB.next.val) return headA.next.val;
-
-    mapA = new Map();
-    mapB = new Map();
-
-    a = headA;
-    b = headB;
-    
-    while ((a.next != null) || (b.next != null))
+    if (head == null) return null;
+    if (head.next == null)
     {
-        console.log('while');
-        if (a.next != null) mapA.set(a.val);
-        if (b.next != null) mapB.set(b.val);
-
-        if (mapA.has(b.val)) return b.val;
-        if (mapB.has(a.val)) return a.val;
-
-        if (a.next != null) a = a.next;
-        if (b.next != null) b = b.next;
+        if (head.val == val) return null;
     }
-    return null; 
+
+    let node = head;
+    let newHead = head;
+
+    if (node.val == val)
+    {
+        console.log("top");
+        node = node.next;
+        while (node.val == val)
+        {
+            node = node.next;
+        }
+        newHead = node;
+    }
+    
+    while (node.next != null)
+    {
+        console.log("bottom");
+        if (node.next.val == val)
+        {
+            let a = node.next;
+            node.next = a.next;
+        }
+        if (node.next != null) node = node.next;
+    }
+
+    return newHead;    
 };
 
 const listA = 
@@ -149,25 +115,30 @@ const list1 =
     }
 }
 
+//Input:  1->2->6->3->4->5->6, val = 6
 const list2 = 
 {
-    val: 5,
+    val: 1,
     next: 
     {
-        val: 6,                                            
+        val: 2,                                            
         next: 
         {
-            val: 1,
+            val: 6,
             next: 
             {
-                val: 8,
+                val: 3,
                 next: 
                 {
                     val: 4,
                     next:
                     {
                         val: 5,
-                        next: null
+                        next: 
+                        {
+                            val: 6,
+                            next: null
+                        }
                     } 
                 }
             }
@@ -279,6 +250,9 @@ const list6 =
         }
     }
 }
-console.log(getIntersectionNode(list1, list2));
 
-
+let list = list2;
+let num  = 6
+console.log(JSON.stringify(list, null, 4));
+console.log();
+console.log(JSON.stringify(removeElements(list, num), null, 4));
