@@ -27,28 +27,31 @@ var removeElements = function(head, val)
     {
         if (head.val == val) return null;
     }
+    if (val == null) return head;
 
     let node = head;
     let newHead = head;
 
     if (node.val == val)
     {
-        console.log("top");
         node = node.next;
         while (node.val == val)
         {
             node = node.next;
+            if (node == null) return null;
         }
         newHead = node;
     }
     
     while (node.next != null)
     {
-        console.log("bottom");
         if (node.next.val == val)
         {
-            let a = node.next;
-            node.next = a.next;
+            while (node.next.val == val)
+            {
+                node.next = node.next.next;
+                if (node.next == null) return newHead;
+            }
         }
         if (node.next != null) node = node.next;
     }
@@ -201,25 +204,17 @@ const list4 =
 
 const list5 = 
 {
-    val: 5,
+    val: 1,
     next: 
     {
-        val: 6,                                            
+        val: 2,                                            
         next: 
         {
-            val: 1,
+            val: 2,
             next: 
             {
-                val: 8,
-                next: 
-                {
-                    val: 4,
-                    next:
-                    {
-                        val: 5,
-                        next: null
-                    } 
-                }
+                val: 1,
+                next: null
             }
         }
     }
@@ -227,32 +222,22 @@ const list5 =
 
 const list6 = 
 {
-    val: 5,
+    val: 1,
     next: 
     {
-        val: 6,                                            
-        next: 
-        {
-            val: 1,
-            next: 
-            {
-                val: 8,
-                next: 
-                {
-                    val: 4,
-                    next:
-                    {
-                        val: 5,
-                        next: null
-                    } 
-                }
-            }
-        }
-    }
+        val: 1,
+        next: null
+    } 
 }
 
-let list = list2;
-let num  = 6
-console.log(JSON.stringify(list, null, 4));
-console.log();
+//let list = list2;
+//let num  = 6;
+//let list = list6;
+//let num  = 1;
+let list = list5;
+let num  = 2;
+
+
+//console.log(JSON.stringify(list, null, 4));
+//console.log();
 console.log(JSON.stringify(removeElements(list, num), null, 4));
