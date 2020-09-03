@@ -32,7 +32,7 @@ function checkPalindrome(what_goes_here)
         checkPalindrome(front.next, count+1, frontCount, back)
     
     
-    if (a.val == b.val)
+    //if (a.val == b.val)
 
 }
 
@@ -64,17 +64,217 @@ function findFront(head, length)
         node = node.next;
     }
 
+    let even = false;
     if (length % 2 == 0)
-        let even = true;
-    else
-        let even = false;
+        even = true;
 
-    let front = findFront(head, length);
+    //let front = findFront(head, length);
+    node = head;
 
+    let front = new Array();
+
+    for (let i = 0; i < Math.floor(length / 2); i++)
+    {
+        front.push(node.var)
+        node = node.next;
+    }
+
+    let back = node.next.next;
     if (even) 
-        let back = front.next;
-    else
-        let back = front.next.next;
+        back = node.next;
 
-    return checkPalindrome(head, back);    
+    while (back)
+        if (front.pop() == back.val)
+        {
+            back = back.next
+        }
+        else
+        {
+            return false;
+        }
+
+    return true;
+    
+
+    //return checkPalindrome(head, back);    
 };
+
+
+const listA = 
+{
+    val: 6,
+    next: 
+    {
+        val: 10,                                            
+        next: 
+        {
+            val: 12,
+            next: 
+            {
+                val: 3,
+                next: null	
+            }
+        }
+    }
+}
+
+const listB = 
+{
+    val: 1,
+    next: 
+    {
+        val: 2,
+        next: 
+        {
+            val: 2,
+            next: 
+            {
+                val: 1,
+                next: null	
+            }
+        }
+    }
+}
+
+
+const list1 = 
+{
+    val: 1,
+    next: 
+    {
+        val: 2,                                            
+        next: 
+        {
+            val: 3,
+            next: 
+            {
+                val: 2,
+                next: 
+                {
+                    val: 1,
+                    next: null
+                }
+            }
+        }
+    }
+}
+
+//Input:  1->2->6->3->4->5->6, val = 6
+const list2 = 
+{
+    val: 1,
+    next: 
+    {
+        val: 2,                                            
+        next: 
+        {
+            val: 3,
+            next: 
+            {
+                val: 4,
+                next: 
+                {
+                    val: 5,
+                    next:
+                    {
+                        val: 6,
+                        next: 
+                        {
+                            val: 7,
+                            next: null
+                        }
+                    } 
+                }
+            }
+        }
+    }
+}
+
+//
+const list3 = 
+{
+    val: 1,
+    next: 
+    {
+        val: 2,
+        next: 
+        {
+            val: 3,
+            next: 
+            {
+                val: 4,
+                next: 
+                {
+                    val: 5,
+                    next:
+                    {
+                        val: 6,
+                        next: null
+                    } 
+                }
+            }
+        }
+    }
+}
+
+const list4 = 
+{
+    val: 5,
+    next: 
+    {
+        val: 6,                                            
+        next: 
+        {
+            val: 1,
+            next: 
+            {
+                val: 8,
+                next: 
+                {
+                    val: 4,
+                    next:
+                    {
+                        val: 5,
+                        next: null
+                    } 
+                }
+            }
+        }
+    }
+}
+
+const list5 = 
+{
+    val: 1,
+    next: 
+    {
+        val: 2,                                            
+        next: 
+        {
+            val: 3,
+            next: null
+        }
+    }
+}
+
+const list6 = 
+{
+    val: 1,
+    next: 
+    {
+        val: 2,
+        next: null
+    } 
+}
+
+let list = listB;
+//let num  = 6;
+//let list = list6;
+//let num  = 1;
+//let list = list5;
+//let num  = 2;
+
+
+console.log(JSON.stringify(list, null, 4));
+//console.log();
+console.log(isPalindrome(list));
