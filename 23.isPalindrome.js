@@ -26,33 +26,9 @@ Could you do it in O(n) time and O(1) space?
  * @param {ListNode} head
  * @return {boolean}
  */
-function checkPalindrome(what_goes_here)
-{
-    if (count != frontCount)
-        checkPalindrome(front.next, count+1, frontCount, back)
-    
-    
-    //if (a.val == b.val)
-
-}
-
-function findFront(head, length)
-{
-    let node = head;
-    let i = 0;
-
-    while (i < (length / 2))
-    {
-        node = node.next;
-        i++
-    }
-
-    return node;
-}
-
  var isPalindrome = function(head) 
 {
-    if (head == null) return false;
+    if (head == null) return true;
     if (head.next == null) return true;
     
     let length = 0;
@@ -68,20 +44,19 @@ function findFront(head, length)
     if (length % 2 == 0)
         even = true;
 
-    //let front = findFront(head, length);
     node = head;
 
     let front = new Array();
 
     for (let i = 0; i < Math.floor(length / 2); i++)
     {
-        front.push(node.var)
+        front.push(node.val)
         node = node.next;
     }
 
-    let back = node.next.next;
+    let back = node.next;
     if (even) 
-        back = node.next;
+        back = node;
 
     while (back)
         if (front.pop() == back.val)
@@ -94,12 +69,9 @@ function findFront(head, length)
         }
 
     return true;
-    
-
-    //return checkPalindrome(head, back);    
 };
 
-
+//even false
 const listA = 
 {
     val: 6,
@@ -118,6 +90,7 @@ const listA =
     }
 }
 
+//even true
 const listB = 
 {
     val: 1,
@@ -136,7 +109,7 @@ const listB =
     }
 }
 
-
+//odd true
 const list1 = 
 {
     val: 1,
@@ -159,7 +132,7 @@ const list1 =
     }
 }
 
-//Input:  1->2->6->3->4->5->6, val = 6
+//odd true
 const list2 = 
 {
     val: 1,
@@ -174,13 +147,13 @@ const list2 =
                 val: 4,
                 next: 
                 {
-                    val: 5,
+                    val: 3,
                     next:
                     {
-                        val: 6,
+                        val: 2,
                         next: 
                         {
-                            val: 7,
+                            val: 1,
                             next: null
                         }
                     } 
@@ -190,59 +163,17 @@ const list2 =
     }
 }
 
-//
-const list3 = 
-{
-    val: 1,
-    next: 
-    {
-        val: 2,
-        next: 
-        {
-            val: 3,
-            next: 
-            {
-                val: 4,
-                next: 
-                {
-                    val: 5,
-                    next:
-                    {
-                        val: 6,
-                        next: null
-                    } 
-                }
-            }
-        }
-    }
-}
+//null false
+const list3 = null;
 
+//single item true
 const list4 = 
 {
     val: 5,
-    next: 
-    {
-        val: 6,                                            
-        next: 
-        {
-            val: 1,
-            next: 
-            {
-                val: 8,
-                next: 
-                {
-                    val: 4,
-                    next:
-                    {
-                        val: 5,
-                        next: null
-                    } 
-                }
-            }
-        }
-    }
+    next: null
 }
 
+//odd false
 const list5 = 
 {
     val: 1,
@@ -267,7 +198,7 @@ const list6 =
     } 
 }
 
-let list = listB;
+let list = list5;
 //let num  = 6;
 //let list = list6;
 //let num  = 1;
@@ -277,4 +208,5 @@ let list = listB;
 
 console.log(JSON.stringify(list, null, 4));
 //console.log();
+//test NULL list and single item list
 console.log(isPalindrome(list));
