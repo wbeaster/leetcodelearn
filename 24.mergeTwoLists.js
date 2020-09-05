@@ -21,26 +21,46 @@ Output: 1->1->2->3->4->4
  */
 var mergeTwoLists = function(l1, l2) 
 {
-    let node = null;
-
-    while (l1 != null || l2 != null)
+    function splice(n1, n2)
     {
-        if (l1 != null)
+        while (n1 != null || n2 != null)
         {
-            node.next = l1;
-            l1 = l1.next;
+            if (n1 != null)
+            {
+                node.next = n1;
+                if (node.next != null) node = node.next;
+    
+                n1 = n1.next;
+            }
+    
+            if (n2 != null)
+            {
+                node.next = n2;
+                if (node.next != null) node = node.next;
+    
+                n2 = n2.next;
+            }
         }
-
-        if (l2 != null)
-        {
-            node.next = l2;
-            l2 = l2.next;
-        }
-        if (node.next != null) node = node.next;
     }
 
-    return node;
-    
+    let node = null;
+    let newHead = null;
+    if (l1 != null)
+    {
+        node = l1;
+        newHead = l1;
+        l1 = l1.next;
+        splice(l2, l1);
+    }
+    else if (l2 != null)
+    {
+        node = l2;
+        newHead = l2;
+        l2 = l2.next;
+        splice(l1, l2);
+    }
+
+    return newHead;
 };
 
 //even false
@@ -170,7 +190,8 @@ const list6 =
     } 
 }
 
-let list = list5;
+let l1 = null;
+let l2 = list4;
 //let num  = 6;
 //let list = list6;
 //let num  = 1;
@@ -178,7 +199,8 @@ let list = list5;
 //let num  = 2;
 
 
-console.log(JSON.stringify(list, null, 4));
+console.log(JSON.stringify(l1, null, 4));
+console.log(JSON.stringify(l2, null, 4));
 //console.log();
 //test NULL list and single item list
-console.log(mergeTwoLists(listA, listB));
+console.log(JSON.stringify(mergeTwoLists(l1, l2), null, 4));
