@@ -43,6 +43,12 @@ var mergeTwoLists = function(l1, l2)
         }
     }
 
+    //now splice in sorted order, like the spec says
+    if (l1 == null) return l2;
+    if (l2 == null) return l2;
+
+    
+
     let node = null;
     let newHead = null;
     if (l1 != null)
