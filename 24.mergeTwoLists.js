@@ -21,55 +21,52 @@ Output: 1->1->2->3->4->4
  */
 var mergeTwoLists = function(l1, l2) 
 {
-    function splice(n1, n2)
-    {
-        while (n1 != null || n2 != null)
-        {
-            if (n1 != null)
-            {
-                node.next = n1;
-                if (node.next != null) node = node.next;
-    
-                n1 = n1.next;
-            }
-    
-            if (n2 != null)
-            {
-                node.next = n2;
-                if (node.next != null) node = node.next;
-    
-                n2 = n2.next;
-            }
-        }
-    }
-
-    //now splice in sorted order, like the spec says
     if (l1 == null) return l2;
-    if (l2 == null) return l2;
-
-    
+    if (l2 == null) return l1;
 
     let node = null;
-    let newHead = null;
-    if (l1 != null)
+    if (l1.val < l2.val)
     {
         node = l1;
-        newHead = l1;
         l1 = l1.next;
-        splice(l2, l1);
     }
-    else if (l2 != null)
+    else
     {
         node = l2;
-        newHead = l2;
         l2 = l2.next;
-        splice(l1, l2);
+    }
+    let newHead = node;
+
+    while (l1 != null || l2 != null)
+    {
+        if (l1 == null)
+        {
+            node.next = l2;
+            break;
+        }
+
+        if (l2 == null)
+        {
+            node.next = l1;
+            break;
+        }
+
+        if (l1.val < l2.val)
+        {
+            node.next = l1;
+            l1 = l1.next;
+        }
+        else
+        {
+            node.next = l2;
+            l2 = l2.next;
+        }
+        node = node.next;
     }
 
     return newHead;
 };
 
-//even false
 const listA = 
 {
     val: 6,
@@ -81,14 +78,13 @@ const listA =
             val: 12,
             next: 
             {
-                val: 3,
+                val: 13,
                 next: null	
             }
         }
     }
 }
 
-//even true
 const listB = 
 {
     val: 1,
@@ -100,14 +96,13 @@ const listB =
             val: 2,
             next: 
             {
-                val: 1,
+                val: 3,
                 next: null	
             }
         }
     }
 }
 
-//odd true
 const list1 = 
 {
     val: 1,
@@ -119,10 +114,10 @@ const list1 =
             val: 3,
             next: 
             {
-                val: 2,
+                val: 4,
                 next: 
                 {
-                    val: 1,
+                    val: 5,
                     next: null
                 }
             }
@@ -130,7 +125,6 @@ const list1 =
     }
 }
 
-//odd true
 const list2 = 
 {
     val: 1,
@@ -145,13 +139,13 @@ const list2 =
                 val: 4,
                 next: 
                 {
-                    val: 3,
+                    val: 5,
                     next:
                     {
-                        val: 2,
+                        val: 6,
                         next: 
                         {
-                            val: 1,
+                            val: 7,
                             next: null
                         }
                     } 
@@ -161,17 +155,14 @@ const list2 =
     }
 }
 
-//null false
 const list3 = null;
 
-//single item true
 const list4 = 
 {
     val: 5,
     next: null
 }
 
-//odd false
 const list5 = 
 {
     val: 1,
@@ -196,8 +187,8 @@ const list6 =
     } 
 }
 
-let l1 = null;
-let l2 = list4;
+let l1 = list3;
+let l2 = list3;
 //let num  = 6;
 //let list = list6;
 //let num  = 1;
