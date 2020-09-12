@@ -62,19 +62,25 @@ var rotateRight = function(head, k)
         return;
     }
 
-    function terminate(head, lastNode)
-    {
-        return;
-    }
-
-    //TODO: Address null linked list
-    //TODO: Address single linked list
+    if (head == null) return head;
+    if (k == 0) return head;
     
     length = listLength(head);
-    makeCircular(head);
+
     node = head;
 
-    for (i = 0; i < k; i++)
+    let tk = k;
+
+    while (tk > length)
+        tk -= length;
+
+    let index = length - tk;
+
+    if (index == 0) return head;
+
+    makeCircular(head);
+
+    for (i = 0; i < index - 1; i++)
         node = node.next;
 
     let newHead = node.next;
@@ -238,8 +244,8 @@ const list9 =
     }
 }
 
-let l1 = list5;
-let k = 4;
+let l1 = list6;
+let k = 1;
 
 console.log(JSON.stringify(l1, null, 4));
 
