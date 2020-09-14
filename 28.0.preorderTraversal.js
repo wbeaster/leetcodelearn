@@ -29,14 +29,15 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
  */
 var preorderTraversal = function(root) 
 {
+    if (root == null) return [];
     if (root.left != null && root.right != null)
-        return [root.val].push(preorderTraversal(root.left)).push(preorderTraversal(root.right));
+        return [Number(root.val)].concat(preorderTraversal(root.left)).concat(preorderTraversal(root.right));
     if (root.left != null && root.right == null)
-        return [root.val].push(preorderTraversal(root.left));
+        return [Number(root.val)].concat(preorderTraversal(root.left));
     if (root.left == null && root.right != null)
-        return [root.val].push(preorderTraversal(root.right));
+        return [Number(root.val)].concat(preorderTraversal(root.right));
     if (root.left == null && root.right == null)
-        return root.val;
+        return Number(root.val);
 /*
     if (root.left != null && root.right != null)
         return [root.val, preorderTraversal(root.left), preorderTraversal(root.right)];
@@ -139,7 +140,111 @@ const tree2 =
     }
 }
 
-let tree = tree0;
+const tree3 = 
+{
+    val: null,
+    left: null,
+    right: null
+}
+
+const tree4 = 
+{
+    val: 1,
+    left: null,
+    right: null
+}
+
+const treeleft = 
+{
+    val: 'F',
+    left: 
+    {
+        val: 'B',
+        left:
+        {
+            val: 'A',
+            left: 
+            {
+                val: 'Z',
+                left: null,
+                right: null
+            }
+        }
+    }
+}
+
+const treeright = 
+{
+    val: 'F',
+    left: null,
+    right:
+    {
+        val: 'G',
+        left: null,
+        right:
+        {
+            val: 'I',
+            left: null,
+            right: 
+            {
+                val: 'H',
+                left: null,
+                right: null
+            },
+        },
+    }
+}
+
+const treenull = null;
+
+const treenum = 
+{
+    val: '6',
+    left: 
+    {
+        val: '2',
+        left:
+        {
+            val: '1',
+            left: null,
+            right: null
+        },
+        right:
+        {
+            val: '4',
+            left:
+            {
+                val: '3',
+                left: null,
+                right: null
+            },
+            right:
+            {
+                val: '5',
+                left: null,
+                right: null
+            }
+        }
+    },
+    right:
+    {
+        val: '7',
+        left: null,
+        right:
+        {
+            val: '9',
+            left: 
+            {
+                val: '8',
+                left: null,
+                right: null
+            },
+            right: null
+        },
+    }
+}
+
+let tree = treenum;
 
 console.log(JSON.stringify(tree, null, 4));
 
