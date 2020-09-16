@@ -1,20 +1,44 @@
 /*
-Given a binary tree, return the preorder traversal of its nodes' values.
-
-Example:
-
-Input: [1,null,2,3]
-   1
-    \
-     2
-    /
-   3
-
-Output: [1,2,3]
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
 
 Follow up: Recursive solution is trivial, could you do it iteratively?
-*/
 
+ 
+
+Example 1:
+
+Input: root = [1,null,2,3]
+Output: [1,3,2]
+
+Example 2:
+
+Input: root = []
+Output: []
+
+Example 3:
+
+Input: root = [1]
+Output: [1]
+
+Example 4:
+
+Input: root = [1,2]
+Output: [2,1]
+
+Example 5:
+
+Input: root = [1,null,2]
+Output: [1,2]
+
+ 
+
+Constraints:
+
+    The number of nodes in the tree is in the range [0, 100].
+    -100 <= Node.val <= 100
+
+
+*/
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -27,36 +51,24 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
  * @param {TreeNode} root
  * @return {number[]}
  */
-var preorderTraversal = function(root) 
+var inorderTraversal = function(root) 
 {
-    answer = [];
-    if (root == null) return [];
-    if (root.left != null && root.right != null)
-        return answer.push(preorderTraversal(root.left)).push(preorderTraversal(root.right));
-    if (root.left != null && root.right == null)
-        return answer.push(root.val).push(preorderTraversal(root.left));
-    if (root.left == null && root.right != null)
-        return answer.push(root.val).push(preorderTraversal(root.right));
-    if (root.left == null && root.right == null)
-        return answer.push(root.val);
-/*
-    if (root.left != null && root.right != null)
-        return [root.val, preorderTraversal(root.left), preorderTraversal(root.right)];
-    if (root.left != null && root.right == null)
-        return [root.val, preorderTraversal(root.left)];
-    if (root.left == null && root.right != null)
-        return [root.val, preorderTraversal(root.right)];
-    if (root.left == null && root.right == null)
-        return root.val;
-*/
-/*
-    if (root.left != null)
-        return [root.val, preorderTraversal(root.left)];
-    else if (root.right != null)
-        return [root.val, preorderTraversal(root.right)];
-    else
-        return root.val;
-*/
+    function visitNode(node)
+    {
+        if (node == null) return;
+
+        visitNode(node.left);
+        answer.push(node.val);
+        visitNode(node.right);
+
+    }
+
+    let answer = [];
+
+    visitNode(root);
+
+    return answer;
+    
 };
 
 
@@ -249,4 +261,4 @@ let tree = treenum;
 
 console.log(JSON.stringify(tree, null, 4));
 
-console.log(preorderTraversal(tree));
+console.log(inorderTraversal(tree));

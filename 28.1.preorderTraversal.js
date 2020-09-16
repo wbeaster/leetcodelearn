@@ -29,11 +29,14 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
  */
 var preorderTraversal = function(root) 
 {
+    //Try to come back to this and rewrite the soltion as your own
     let result = []
 
     const stack = []
     
     stack.push(root)
+
+    //console.log(JSON.stringify(stack, null, 4));
 
     while(stack.length) 
     {
