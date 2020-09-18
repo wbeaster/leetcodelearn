@@ -49,7 +49,20 @@ Constraints:
  */
 var inorderTraversal = function(root) 
 {
-    answer = [];
+    let answer = [];
+    let stack = [];
+
+    stack.push(root);
+
+    while(stack)
+    {
+        let node = stack.pop;
+        answer.push(node.val);
+        if (node.right != null) stack.push(node.right);
+        if (node.left != null) stack.push(node.left);
+    }
+
+    return answer;
 
     
 };
