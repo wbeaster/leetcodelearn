@@ -54,13 +54,44 @@ var inorderTraversal = function(root)
 
     stack.push(root);
 
-    while(stack)
+    while (stack.length)
     {
-        let node = stack.pop;
+        let node = stack.pop();
+
+        if (node.left && node.right)
+        {
+            stack.push(node);
+            stack.push(node.right);
+            stack.push(node.left);
+        }
+        else if (node.left)
+        {
+            stack.push(node);
+            stack.push(node.left);
+
+        }
+        else if (node.right)
+        {
+            stack.push(node);
+            stack.push(node.right);
+
+        }
+        else
+            answer.push(node.val)
+    }
+
+
+/*    
+    while(stack.length)
+    {
+        let node = stack.pop();
+        console.log({stack});
+        console.log({node});
         answer.push(node.val);
         if (node.right != null) stack.push(node.right);
         if (node.left != null) stack.push(node.left);
     }
+*/
 
     return answer;
 
